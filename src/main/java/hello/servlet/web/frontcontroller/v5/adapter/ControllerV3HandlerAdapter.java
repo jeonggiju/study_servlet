@@ -12,10 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
+
     @Override
     public boolean supports(Object handler) {
         return handler instanceof ControllerV3;
     }
+
     @Override
     public ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
         // supports 를 통해 이미 한번 걸러졌기에 casting(controllerV3)이 가능하다.
@@ -26,6 +28,7 @@ public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
 
         return mv;
     }
+
     private Map<String, String> createParamMap(HttpServletRequest request) {
         Map<String, String> paramMap = new HashMap<>();
         request.getParameterNames().asIterator().forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
